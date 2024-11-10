@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{%block title%}
+tweet
+{%endblock%}
+
+{%block content%}
+<h1 class="text-center mt-4">Welcome {{username}}</h1>
+<a class="btn btn-primary" href="{% url 'tweet_create' %}">Create Birthday Reminder</a>
+
+<div id="table1">
+    <br/>
+    <h1 style="color:green;">Contact Dashboard</h1>
+    <table style="width:100%">
+    <thead>     
+        <tr>
+           <th>UserName</th>
+           <th>Message</th>
+           <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tweet in tweets %}
+        <tr>
+            <td>{{ tweet.name }}</td>
+            <td>{{ tweet.text }}</td>
+            <td>{{ tweet.date_of_birth }}</td>
+            <td>{{ tweet.email}}</td>
+            {%if tweet.user == user%}
+            <td><a href="https://www.amazon.co.uk/gcx/Gifts-for-everyone/gfhz/" target="_blank">Click Here For Gift Suggestions</a></td>
+            <td><a href="{%url 'tweet_edit' tweet.id%}" class="btn btn-primary">Edit</a></td>
+            <td><a href="{%url 'tweet_delete' tweet.id%}" class="btn btn-danger">Delete</a></td>
+            {%endif%}
+
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+    </table>
+    </div>
+
+    <div id="table2">
+        <br/>
+        <h1 style="color: red;">Reminder Dashboard</h1>
+        <table style="width:100%">
+        <thead>     
+            <tr>
+               <th>UserName</th>
+               <th>Message</th>
+               <th>Date</th>
+               <th>EmailSent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for tweet in remind_tweets%}
+            <tr>
+                <td>{{ tweet.user.username }}</td>
+                <td>{{ tweet.text }}</td>
+                <td>{{ tweet.date_of_birth }}</td>
+                {%if tweet.email_status != ''%}
+                <td>
+                    {%if tweet.email_status != 'Email sent successfully'%}
+                    <p>{{tweet.email_status}} &#x274C;</p>
+                    {%else%}
+                    {{tweet.email_status}}
+                    <p style="color:green">&#10004;</p>
+                    {%endif%}
+                </td>
+                {%endif%}
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+        </table>
+        </div>
+{%endblock%}
