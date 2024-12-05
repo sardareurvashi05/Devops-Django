@@ -24,12 +24,14 @@ pipeline {
                 }
             }
         }
-        stage("Deploy"){
+        stage('Deploy') {
             steps {
                 echo "Deploying the container"
-                sh "docker-compose down && docker-compose up -d"
-                
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        sh 'docker-compose -f /var/lib/jenkins/workspace/Birthday-Reminder/birthapp/docker-compose.yml up -d'
+                    }
+                }
             }
-        }
     }
 }
