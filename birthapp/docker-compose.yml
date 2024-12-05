@@ -1,6 +1,8 @@
 version : "3.3"
 services :
   web :
-     image : sardareurvashi05/Devops-Django/tree/main/birthapp:latest
+     image : sardareurvashi05/devops-django:latest
+     build:
+        context: ./birthapp  # Make sure the path is correct
      ports :
          - "8000:8000"
