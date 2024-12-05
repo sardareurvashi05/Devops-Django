@@ -4,5 +4,6 @@ services :
      image : sardareurvashi05/devops-django:latest
      build:
         context: ./birthapp  # Make sure the path is correct
+        dockerfile: Dockerfile
      ports :
          - "8000:8000"
