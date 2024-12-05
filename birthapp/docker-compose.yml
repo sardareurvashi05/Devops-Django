@@ -1,6 +1,6 @@
 version : "3.3"
 services :
   web :
-     image : chayandeokar/birthapp:latest
+     image : sardareurvashi05/birthapp:latest
      ports :
          - "8000:8000"
