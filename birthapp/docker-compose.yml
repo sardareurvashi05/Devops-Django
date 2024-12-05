@@ -1,6 +1,6 @@
 version : "3.3"
 services :
   web :
-     image : sardareurvashi05/birthapp:latest
+     image : sardareurvashi05/Devops-Django/tree/main/birthapp:latest
      ports :
          - "8000:8000"
